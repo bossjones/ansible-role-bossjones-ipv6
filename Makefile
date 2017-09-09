@@ -30,3 +30,6 @@ bootstrap-molecule:
 
 ci:
 	molecule test
+
+pretty-yaml:
+	python -m pyaml /path/to/some/file.yaml
