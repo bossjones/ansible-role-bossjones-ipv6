@@ -4,3 +4,9 @@ venv/
 __pycache__
 .vscode/tags
 *.retry
+.cache/
+.molecule/
+.tox/
+tests/.cache/
+tests/__pycache__/
+playbook.retry

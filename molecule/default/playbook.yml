@@ -1,5 +1,61 @@
 ---
 - name: Converge
+  # become: yes
+  # become_method: sudo
   hosts: all
+  pre_tasks:
+    - name: Update apt cache on Debian based systems
+      apt: update_cache=yes cache_valid_time=3600
+      when: ansible_os_family == "Debian"
+    - name: Install prerequisite packages for facts
+      package: name={{ item }}
+      with_items:
+        - iproute
+    - name: Install prerequisite packages for tests
+      package: name={{ item }}
+      with_items:
+        - curl
+    - name: Gather facts now that prerequisite packages are installed
+      setup: filter=ansible_*
   roles:
-    - role: bossjones.ipv6
+    # - role: bossjones.ipv6
+    - role: ansible-role-bossjones-ipv6
+
+
+  # pre_tasks:
+
+  #   - name: Fail if Ansible is ancient
+  #     fail: msg="We need Ansible >= 2.0. Please update your kit. 'pip install -U Ansible'"
+  #     when: ansible_version.major < 2
+  #     tags:
+  #       - always
+
+  #   - name: Include vars from local-configure.yml if found
+  #     include_vars: "{{ item }}"
+  #     with_first_found:
+  #      - local-configure.yml
+  #      - null.yml
+
+  #   - name: pre install system ruby
+  #     dnf: name={{item}} state=present
+  #     with_items:
+  #       - ruby
+
+
+  # tasks:
+
+  #   - name: Set timezone variables
+  #     tags: timezone
+  #     copy: content={{ timezone|default("UTC\n") }}
+  #           dest=/etc/timezone
+  #           owner=root
+  #           group=root
+  #           mode=0644
+  #           backup=yes
+  #     notify:
+  #       - update timezone
+
+  # handlers:
+  #   - name: update timezone
+  #     when: ansible_os_family == 'RedHat'
+  #     file: src=/usr/share/zoneinfo/{{ timezone|default("UTC\n") }}  dest=/etc/localtime state=link force=yes

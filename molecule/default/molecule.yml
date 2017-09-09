@@ -1,13 +1,19 @@
 ---
 dependency:
-  name: gilt
+  name: galaxy
 driver:
   name: docker
 lint:
   name: yamllint
 platforms:
-  - name: instance-1
-    image: centos:7
+  - name: fedora-01
+    image: bossjones/fedora24-systemd-ansible:latest
+    privileged: True
+    command: /usr/sbin/init
+    # run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
+    # init: /usr/lib/systemd/systemd
+    groups:
+      - fedora
 provisioner:
   name: ansible
   lint:
