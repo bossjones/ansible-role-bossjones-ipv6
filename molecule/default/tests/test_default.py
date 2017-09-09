@@ -1,5 +1,5 @@
 import os
-import re
+# import re
 
 import pytest
 
@@ -26,7 +26,7 @@ def test_systcl_settings(host, f):
     cmd = 'sysctl -n {}'.format(f)
     out = host.command.check_output(cmd)
 
-    assert 1 == out
+    assert '1' == out
 
     # assert 3 == len(re.findall(r'member [\d\w]+ is healthy', out))
     # assert 'cluster is healthy' in out
