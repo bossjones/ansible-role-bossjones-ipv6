@@ -11,6 +11,11 @@
       package: name={{ item }}
       with_items:
         - iproute
+        # NOTE: install's sysctl
+        - procps-ng-devel.x86_64
+        # NOTE: install's network
+        - nss-devel
+        - NetworkManager.x86_64
     - name: Install prerequisite packages for tests
       package: name={{ item }}
       with_items:
