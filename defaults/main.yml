@@ -1,2 +1,5 @@
 ---
-# defaults file for bossjones.ipv6
+
+ipv6_config: 'disable'
+#ipv6_config: 'harden'
+
