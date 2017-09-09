@@ -1,0 +1,6 @@
+.cache
+.molecule
+venv/
+__pycache__
+.vscode/tags
+*.retry
