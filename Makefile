@@ -31,5 +31,6 @@ bootstrap-molecule:
 ci:
 	molecule test
 
+# NOTE: make this into a bash alias (pretty-yaml)
 pretty-yaml:
 	python -m pyaml /path/to/some/file.yaml
